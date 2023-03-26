@@ -1,8 +1,9 @@
+<?php include ("db_connect.php") ?> 
 <!DOCTYPE html>
     <html>
         <head>
             <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
-            <title>Мир ткани</title>
+            <title>ВАЗ-2107</title>
             <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -24,8 +25,24 @@
 </td>
 <td width="620" valign="top" >
     <!-- <контент> -->
-    <p>Offset Bio</p>
-<p>Настоящее имя офсета - Киари Кендрелл Сефус. Он более профессионально известен как Офсет. Он американский рэпер и автор песен. Он является участником музыкального трио Migos в стиле хип-хоп и трэп вместе со своим двоюродным братом Куаво и его двоюродным братом, когда-то снявшимся с работы Takeoff. Он также является инвестором киберспортивной организации FaZe Clan. У него миллион подписчиков под его аккаунтом в Instagram. Подключайтесь к биографии и узнайте больше о возрасте, росте, весе, состоянии Офсета, семье, карьере и многих других фактах о нем.</p>
+    <?php
+$sql = "SELECT * FROM articles";
+$result = mysql_query($sql);
+while ($myrow = mysql_fetch_array($result))  {
+    ?>
+<table width="100%" class = "article">
+    <tr>
+        <td width="250">
+            <p><a href="article.php?id=<?php echo $myrow["id"]?>"><?php echo $myrow["title"]?></a></p>
+            <p>Дата создания:<br><b><?php echo $myrow["date_created"]?></b></p>
+            <p>Автор:<br><b><?php echo $myrow["author"]?></b></p>
+</td>
+<td>
+    <?php echo $myrow["description"]?>
+</td>
+</tr>
+</table>
+<?php } ?>    
     <!-- <конец контента> -->
             </td>
 </tr>
